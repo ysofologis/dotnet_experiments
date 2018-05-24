@@ -12,7 +12,7 @@ namespace DotNetExperiments.Modules {
 
         public bool isAllowed(Assembly assembly) {
             var appModuleType = assembly.GetTypes().Where(x => typeof(IAppModule).IsAssignableFrom(x)).SingleOrDefault();
-            if (appModuleType != null) {
+            if (appModuleType != null && !appModuleType.IsInterface) {
                 var appModule = Activator.CreateInstance(appModuleType) as IAppModule;
                 var moduleInfo = appModule.getInfo();
                 return allowedModuleNames.Any(x => x == moduleInfo.name);

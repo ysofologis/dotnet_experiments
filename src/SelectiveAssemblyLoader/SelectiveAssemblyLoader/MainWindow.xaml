@@ -7,5 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="25"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="1" Grid.Column="1" Background="#fafafa">
+            <Label Content="DLL to load"></Label>
+            <TextBox Text="{Binding Path=dllNames}" 
+                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
+        </DockPanel>
+        <DockPanel Grid.Row="3" Grid.Column="1">
+            <Button x:Name="btnLoadLibraries" 
+                    Width="120" 
+                    Click="btnLoadLibraries_Click"
+                    HorizontalAlignment="Right">Filter Libraries</Button>
+        </DockPanel>
+        <DockPanel Grid.Row="5" Grid.Column="1" Background="#fafafa">
+            <TextBlock Text="App Memory" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Width="5"></TextBlock>
+            <TextBox Text="{Binding Path=memorySize}" VerticalAlignment="Center" IsReadOnly="True"></TextBox>
+        </DockPanel>
+        <DockPanel Grid.Row="7" Grid.Column="1">
+            <Button x:Name="btnQueryMem" Width="120" 
+                    HorizontalAlignment="Right" Click="btnQueryMem_Click">Query Memory</Button>
+        </DockPanel>
     </Grid>
 </Window>

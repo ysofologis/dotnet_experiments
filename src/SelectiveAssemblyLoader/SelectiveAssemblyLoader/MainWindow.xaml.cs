@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DotNetExperiments.Modules;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,19 @@ namespace DotNetExperiments.UI {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            DataContext = AppState.assemblyLoader;
+        }
+
+        private void btnLoadLibraries_Click(object sender, RoutedEventArgs e) {
+            var moduleFilter = new ModuleFilter() {
+                allowedModuleNames = AppState.assemblyLoader.dllNames.Split(','),
+            };
+            var dllNames = AssemblyLoader.filterAssemblies(moduleFilter);
+            AssemblyLoader.loadAssemblies(dllNames);
+        }
+
+        private void btnQueryMem_Click(object sender, RoutedEventArgs e) {
+            AppState.assemblyLoader.queryMemory();
         }
     }
 }
